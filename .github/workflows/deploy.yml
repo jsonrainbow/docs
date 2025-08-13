@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hydephp/action@master
+        with:
+          deploy-to: "pages"
+          env: |
+            SITE_NAME="JSON Schema - Documentation"
+            SITE_URL="https://jsonrainbow.github.io/docs/"
+            TORCHLIGHT_TOKEN=${{ secrets.TORCHLIGHT_TOKEN }}
+          debug: true
