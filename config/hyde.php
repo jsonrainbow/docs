@@ -34,11 +34,11 @@ return [
     |--------------------------------------------------------------------------
     |
     | This value sets the name of your site and is, for example, used in
-    | the compiled page titles and more. The default value is HydePHP.
+    | the compiled page titles and more. The default value is JSON Schema.
     |
     */
 
-    'name' => env('SITE_NAME', 'HydePHP'),
+    'name' => env('SITE_NAME', 'JSON Schema for PHP'),
 
     /*
     |--------------------------------------------------------------------------
@@ -116,7 +116,7 @@ return [
         'filename' => 'feed.xml',
 
         // The channel description.
-        'description' => env('SITE_NAME', 'HydePHP').' RSS Feed',
+        'description' => env('SITE_NAME', 'JSON Schema').' RSS Feed',
     ],
 
     /*
@@ -221,7 +221,7 @@ return [
         // Meta::name('description', 'My Hyde Blog'),
         // Meta::name('keywords', 'Static Sites, Blogs, Documentation'),
         Meta::name('generator', 'HydePHP v'.Hyde\Hyde::version()),
-        Meta::property('site_name', env('SITE_NAME', 'HydePHP')),
+        Meta::property('site_name', env('SITE_NAME', 'JSON Schema')),
     ],
 
     /*
@@ -286,9 +286,9 @@ return [
 
     'authors' => [
         Author::create(
-            'mr_hyde', // Required username
-            'Mr. Hyde', // Optional display name
-            'https://hydephp.com' // Optional website URL
+            'DannyvdSluijs', // Required username
+            'Danny', // Optional display name
+            'https://github.com/DannyvdSluijs' // Optional website URL
         ),
     ],
 

@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JSON Schema for PHP - Index</title>
+<title>JSON Schema for PHP - Community guide</title>
 
 
 
-<meta name="twitter:title" content="JSON Schema for PHP - Index">
-<meta property="og:title" content="JSON Schema for PHP - Index">
+<meta name="twitter:title" content="JSON Schema for PHP - Community guide">
+<meta property="og:title" content="JSON Schema for PHP - Community guide">
 
 
 <meta name="generator" content="HydePHP v1.8.0">
@@ -75,7 +75,7 @@
          :class="navigationOpen ? '' : 'hidden'" x-cloak>
         <ul aria-label="Navigation links" class="md:flex-grow md:flex justify-end">
                             <li class="md:mx-2">
-                                            <a href="index.html" aria-current="page" class="block my-2 md:my-0 md:inline-block py-1 text-gray-700 hover:text-gray-900 dark:text-gray-100 border-l-4 border-indigo-500 md:border-none font-medium -ml-6 pl-5 md:ml-0 md:pl-0 bg-gray-100 dark:bg-gray-800 md:bg-transparent dark:md:bg-transparent">Home</a>                                    </li>
+                                            <a href="index.html"  class="block my-2 md:my-0 md:inline-block py-1 text-gray-700 hover:text-gray-900 dark:text-gray-100">Home</a>                                    </li>
                             <li class="md:mx-2">
                                             <a href="getting-started.html"  class="block my-2 md:my-0 md:inline-block py-1 text-gray-700 hover:text-gray-900 dark:text-gray-100">Getting started</a>                                    </li>
                             <li class="md:mx-2">
@@ -83,86 +83,22 @@
                             <li class="md:mx-2">
                                             <a href="advanced-topics.html"  class="block my-2 md:my-0 md:inline-block py-1 text-gray-700 hover:text-gray-900 dark:text-gray-100">Advanced topics</a>                                    </li>
                             <li class="md:mx-2">
-                                            <a href="community-guide.html"  class="block my-2 md:my-0 md:inline-block py-1 text-gray-700 hover:text-gray-900 dark:text-gray-100">Community guide</a>                                    </li>
+                                            <a href="community-guide.html" aria-current="page" class="block my-2 md:my-0 md:inline-block py-1 text-gray-700 hover:text-gray-900 dark:text-gray-100 border-l-4 border-indigo-500 md:border-none font-medium -ml-6 pl-5 md:ml-0 md:pl-0 bg-gray-100 dark:bg-gray-800 md:bg-transparent dark:md:bg-transparent">Community guide</a>                                    </li>
                             <li class="md:mx-2">
                                             <a href="contributors.html"  class="block my-2 md:my-0 md:inline-block py-1 text-gray-700 hover:text-gray-900 dark:text-gray-100">Contributors</a>                                    </li>
                     </ul>
     </div>
 </nav>
     <section>
-            <div class="bg-gradient-to-b from-gray-50 to-white py-20">
-        <div class="max-w-5xl mx-auto text-center px-4">
-            <!-- Logos -->
-            <div class="flex items-center justify-center gap-6 mb-6">
-                <img src="media/json-schema-logo-blue.svg" alt="JSON Schema Logo" class="h-60 w-60 object-contain">
-                <span class="text-5xl font-bold text-gray-500">+</span>
-                <img src="media/php-logo.svg" alt="PHP Logo" class="h-60 w-60 object-contain">
-            </div>
+        
+    <main id="content" class="mx-auto max-w-7xl py-16 px-8">
+        <article class="mx-auto prose dark:prose-invert">
+            <h1>Community guide</h1>
+<p>This page needs to be written, want to help out? Checkout GitHub repo!</p>
 
-            <!-- Title & Description -->
-            <h1 class="text-5xl font-bold text-gray-800">JSON Schema for PHP</h1>
-            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                Validate, interpret, and work with JSON Schemas in PHP — fully compatible with the specifications.
-            </p>
+        </article>
+    </main>
 
-            <!-- CTA -->
-            <div class="mt-8">
-                <a href="getting-started"
-                   class="inline-block px-8 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow hover:bg-blue-700">
-                    Get Started →
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Features -->
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 py-16 px-4">
-        <div class="p-6 bg-white rounded-2xl shadow">
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">Standards Compliant</h2>
-            <p class="text-gray-600">
-                Implements the official <a href="https://json-schema.org/specification" class="text-blue-600">JSON Schema specification</a>
-                (Draft 3 and 4), ensuring predictable and reliable validation.
-            </p>
-        </div>
-        <div class="p-6 bg-white rounded-2xl shadow">
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">Developer Friendly</h2>
-            <p class="text-gray-600">
-                Simple, expressive API designed for modern PHP projects. Integrates easily into frameworks like Laravel, Symfony, and more.
-            </p>
-        </div>
-        <div class="p-6 bg-white rounded-2xl shadow">
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">Extensible</h2>
-            <p class="text-gray-600">
-                Built with extensibility in mind — customize validation rules, add formats, or adapt to domain-specific requirements.
-            </p>
-        </div>
-    </div>
-
-    <!-- Example -->
-    <div class="bg-gray-50 py-16">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Example</h2>
-            <pre class="bg-white rounded-lg shadow p-4 overflow-x-auto text-sm">
-<code class="language-php">
-
-$schema = json_decode(file_get_contents('person.schema.json'));
-$data = json_decode('{"name": "Alice", "age": 30}');
-
-$validator = new \JsonSchema\Validator();
-$validator->validate($data, $schema);
-
-if ($validator->isValid()) {
-    echo "✅ The supplied JSON validates against the schema.\n";
-} else {
-    echo "❌ JSON does not validate. Violations:\n";
-    foreach ($validator->getErrors() as $error) {
-        printf("[%s] %s\n", $error['property'], $error['message']);
-    }
-}
-</code>
-            </pre>
-        </div>
-    </div>
     </section>
 
     <footer aria-label="Page footer" class="flex py-4 px-6 w-full text-center mt-auto bg-slate-100 dark:bg-gray-800">
