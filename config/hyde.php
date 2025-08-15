@@ -25,6 +25,7 @@
 use Hyde\Facades\Author;
 use Hyde\Enums\Feature;
 use Hyde\Facades\Meta;
+use Hyde\Framework\Features\Navigation\NavItem;
 
 return [
 
@@ -116,7 +117,7 @@ return [
         'filename' => 'feed.xml',
 
         // The channel description.
-        'description' => env('SITE_NAME', 'JSON Schema').' RSS Feed',
+        'description' => env('SITE_NAME', 'JSON Schema for PHP').' RSS Feed',
     ],
 
     /*
@@ -221,7 +222,7 @@ return [
         // Meta::name('description', 'My Hyde Blog'),
         // Meta::name('keywords', 'Static Sites, Blogs, Documentation'),
         Meta::name('generator', 'HydePHP v'.Hyde\Hyde::version()),
-        Meta::property('site_name', env('SITE_NAME', 'JSON Schema')),
+        Meta::property('site_name', env('SITE_NAME', 'JSON Schema for PHP')),
     ],
 
     /*
@@ -308,7 +309,7 @@ return [
     |
     */
 
-    'footer' => 'Site proudly built with [HydePHP](https://github.com/hydephp/hyde) 🎩',
+    'footer' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -350,7 +351,7 @@ return [
         // To get started quickly, you can uncomment the defaults here.
         // See the documentation link above for more information.
         'custom' => [
-            // NavItem::forLink('https://github.com/hydephp/hyde', 'GitHub', 200),
+            NavItem::forLink('https://github.com/jsonrainbow/json-schema', 'GitHub', 200),
         ],
 
         // How should pages in subdirectories be displayed in the menu?

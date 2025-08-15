@@ -18,7 +18,7 @@
 
             <!-- CTA -->
             <div class="mt-8">
-                <a href="{{ url('getting-started') }}"
+                <a href="{{ url('docs/getting-started') }}"
                    class="inline-block px-8 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow hover:bg-blue-700 dark:bg-sky-400 dark:hover:bg-sky-500">
                     Get Started →
                 </a>

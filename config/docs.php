@@ -90,8 +90,8 @@ return [
     |
     */
 
-    // 'source_file_location_base' => 'https://github.com/<user>/<repo>/<[blob/edit]>/<branch>',
-    'edit_source_link_text' => 'Edit Source',
+    'source_file_location_base' => 'https://github.com/jsonrainbow/docs/edit/main/_docs',
+    'edit_source_link_text' => 'Found a typo?',
     'edit_source_link_position' => 'footer', // 'header', 'footer', or 'both'
 
     /*

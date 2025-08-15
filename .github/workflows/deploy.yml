@@ -16,7 +16,6 @@ jobs:
         with:
           deploy-to: "pages"
           env: |
-            SITE_NAME="JSON Schema"
             SITE_URL="https://jsonrainbow.github.io/docs/"
             TORCHLIGHT_TOKEN=${{ secrets.TORCHLIGHT_TOKEN }}
           debug: true
