@@ -20,7 +20,7 @@
 <style>[x-cloak] {display: none!important}</style>
 
 
-    <link rel="stylesheet" href="media/app.css?v=c738313fddac0baf43cddf51e0a534ac">
+    <link rel="stylesheet" href="media/app.css?v=e00767a839006e2bdc599299f16662c7">
 
 
 
@@ -36,8 +36,8 @@
 
 
 </head>
-<body id="app" class="flex flex-col min-h-screen overflow-x-hidden bg-slate-50 text-gray-800 dark:bg-gray-900 dark:text-white" x-data="{ navigationOpen: false }" x-on:keydown.escape="navigationOpen = false;">
-    <a href="#content" id="skip-to-content" class="sr-only focus:not-sr-only bg-black border-4 border-yellow-400 focus:absolute focus:mt-2 focus:mx-auto focus:p-2 focus:w-64 h-auto left-0 overflow-auto right-0 rounded-md text-center text-lg text-white top-auto z-50 ">Skip to content</a>    <nav aria-label="Main navigation" id="main-navigation" class="flex flex-wrap items-center justify-between p-4 shadow-lg sm:shadow-xl md:shadow-none dark:bg-gray-800">
+<body id="app" class="flex flex-col min-h-screen overflow-x-hidden bg-slate-50 text-gray-800 dark:bg-gray-800 dark:text-white" x-data="{ navigationOpen: false }" x-on:keydown.escape="navigationOpen = false;">
+    <a href="#content" id="skip-to-content" class="sr-only focus:not-sr-only bg-black border-4 border-yellow-400 focus:absolute focus:mt-2 focus:mx-auto focus:p-2 focus:w-64 h-auto left-0 overflow-auto right-0 rounded-md text-center text-lg text-white top-auto z-50 ">Skip to content</a>    <nav aria-label="Main navigation" id="main-navigation" class="flex flex-wrap items-center justify-between p-4 shadow-lg sm:shadow-xl md:shadow-none bg-slate-400 dark:bg-slate-400">
     <div class="flex flex-grow items-center flex-shrink-0 text-gray-700 dark:text-gray-200">
         <a href="index.html" class="font-bold px-4" aria-label="Home page">
     JSON Schema for PHP
@@ -89,8 +89,8 @@
                     </ul>
     </div>
 </nav>
-    <section>
-        
+    <section class="">
+        <div class="bg-gradient-to-b from-slate-400 to-slate-50 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-400">
     <main id="content" class="mx-auto max-w-7xl py-16 px-8">
         <article class="mx-auto prose dark:prose-invert">
             <h1>Getting started</h1>
@@ -156,13 +156,12 @@ if ($validator-&gt;isValid()) {
 
         </article>
     </main>
-
+</div>
     </section>
 
-    <footer aria-label="Page footer" class="flex py-4 px-6 w-full text-center mt-auto bg-slate-100 dark:bg-gray-800">
-        <div class="prose dark:prose-invert text-center mx-auto">
-            <p>Site proudly built with <a href="https://github.com/hydephp/hyde">HydePHP</a> 🎩</p>
-
+    <footer aria-label="Page footer" class="flex py-4 px-6 w-full text-center mt-auto bg-slate-50 dark:bg-gray-800">
+        <div class="prose dark:prose-invert text-center mx-auto ">
+            <p>Site proudly built with <a class="text-blue-600 hover:text-blue-700 dark:text-sky-400 hover:underline dark:hover:text-sky-300" href="https://github.com/hydephp/hyde">HydePHP</a> 🎩</p>
         </div>
         <a href="#app" aria-label="Go to top of page" class="float-right">
             <button title="Scroll to top">

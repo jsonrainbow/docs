@@ -2,7 +2,7 @@
     $navigation = \Hyde\Framework\Features\Navigation\NavigationMenu::create();
 @endphp
 
-<nav aria-label="Main navigation" id="main-navigation" class="flex flex-wrap items-center justify-between p-4 shadow-lg sm:shadow-xl md:shadow-none dark:bg-gray-800">
+<nav aria-label="Main navigation" id="main-navigation" class="flex flex-wrap items-center justify-between p-4 shadow-lg sm:shadow-xl md:shadow-none bg-slate-400 dark:bg-slate-400">
     <div class="flex flex-grow items-center flex-shrink-0 text-gray-700 dark:text-gray-200">
         @include('hyde::components.navigation.navigation-brand')
 
