@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JSON Schema for PHP - Getting started</title>
+<title>JSON Schema for PHP - Check mode</title>
 
 
 
-<meta name="twitter:title" content="JSON Schema for PHP - Getting started">
-<meta property="og:title" content="JSON Schema for PHP - Getting started">
+<meta name="twitter:title" content="JSON Schema for PHP - Check mode">
+<meta property="og:title" content="JSON Schema for PHP - Check mode">
 
 
 <meta name="generator" content="HydePHP v1.8.0">
@@ -73,23 +73,21 @@
 </div>    </header>
     <nav id="sidebar-navigation" class="p-2 overflow-y-auto border-y border-gray-300 dark:border-[#1b2533] h-full">
         <ul id="sidebar-items" role="list" class="pl-2">
-                    <li class="sidebar-item -ml-4 pl-4 active bg-black/5 dark:bg-black/10" role="listitem">
-            <a href="../docs/getting-started.html" aria-current="true" class="-ml-4 p-2 block hover:bg-black/5 dark:hover:bg-black/10 text-indigo-600 dark:text-indigo-400 dark:font-medium border-l-[0.325rem] border-indigo-500 transition-colors duration-300 ease-in-out">
+                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
+            <a href="../docs/getting-started.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
             Getting started
+        </a>
+    </li>                    <li class="sidebar-item -ml-4 pl-4 active bg-black/5 dark:bg-black/10" role="listitem">
+            <a href="../docs/check-mode.html" aria-current="true" class="-ml-4 p-2 block hover:bg-black/5 dark:hover:bg-black/10 text-indigo-600 dark:text-indigo-400 dark:font-medium border-l-[0.325rem] border-indigo-500 transition-colors duration-300 ease-in-out">
+            Check mode
         </a>
 
                     <span class="sr-only">Table of contents</span>
             <ul class="table-of-contents">
-<li><a href="#installing-json-schema-using-composer">Installing JSON Schema Using Composer</a></li>
-<li><a href="#validating-using-a-schema-on-disk">Validating using a schema on disk</a></li>
-<li><a href="#validating-using-an-inline-schema">Validating using an inline schema</a></li>
+<li><a href="#available-flags">Available flags</a></li>
 </ul>
 
             </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
-            <a href="../docs/check-mode.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
-            Check mode
-        </a>
-    </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
             <a href="../docs/advanced-topics.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
             Advanced topics
         </a>
@@ -112,72 +110,87 @@
         <article id="document" itemscope itemtype="https://schema.org/Article" class="mx-auto lg:ml-8 max-w-3xl p-12 md:px-16 max-w-[1000px] min-h-[calc(100vh_-_4rem)] prose dark:prose-invert">
     
     <header id="document-header" class="flex items-center flex-wrap justify-between prose-h1:mb-3">
-        <h1>Getting started</h1>
+        <h1>Check mode</h1>
     </header>
     <section id="document-main-content" itemprop="articleBody">
-        <h2>Installing JSON Schema Using Composer<a id="installing-json-schema-using-composer" href="#installing-json-schema-using-composer" class="heading-permalink" title="Permalink"></a></h2>
-<p>The recommended method of installing JSON Schema is using Composer, which installs the required dependencies on
-a per-project basis.</p>
-<pre><code class="language-bash">composer require justinrainbow/json-schema
+        <p>JSON Schema for PHP check mode can be configured using the flags from the Constraint class. These can be configured as default
+or provided for a single <code>validate()</code> call.</p>
+<pre><code class="language-php">$checkMode = Constraint::CHECK_MODE_NORMAL | Constraint::CHECK_MODE_VALIDATE_SCHEMA | Constraint::CHECK_MODE_APPLY_DEFAULTS;
+
+$validator = new Validator(new Factory(null, null, $checkMode)); // Setting the default check mode for all validate calls.
+$validator-&gt;validate($data, $schema, $checkMode); // Or set the check mode for this validation call.
 </code></pre>
-<h2>Validating using a schema on disk<a id="validating-using-a-schema-on-disk" href="#validating-using-a-schema-on-disk" class="heading-permalink" title="Permalink"></a></h2>
-<pre><code class="language-php">&lt;?php
-
-$data = json_decode(file_get_contents('data.json'));
-
-// Validate
-$validator = new JsonSchema\Validator;
-$validator-&gt;validate($data, (object)['$ref' =&gt; 'file://' . realpath('schema.json')]);
-
-if ($validator-&gt;isValid()) {
-    echo &quot;The supplied JSON validates against the schema.\n&quot;;
-} else {
-    echo &quot;JSON does not validate. Violations:\n&quot;;
-    foreach ($validator-&gt;getErrors() as $error) {
-        printf(&quot;[%s] %s\n&quot;, $error['property'], $error['message']);
-    }
-}
-</code></pre>
-<h2>Validating using an inline schema<a id="validating-using-an-inline-schema" href="#validating-using-an-inline-schema" class="heading-permalink" title="Permalink"></a></h2>
-<pre><code class="language-php">&lt;?php
-
-use JsonSchema\Constraints\Factory;
-use JsonSchema\SchemaStorage;
-use JsonSchema\Validator;
-
-require_once './vendor/autoload.php';
-
-$data = json_decode(file_get_contents('data.json'));
-$jsonSchemaAsString = &lt;&lt;&lt;'JSON'
-{
-  &quot;type&quot;: &quot;object&quot;,
-  &quot;properties&quot;: {
-    &quot;name&quot;: { &quot;type&quot;: &quot;string&quot;},
-    &quot;email&quot;: {&quot;type&quot;: &quot;string&quot;}
-  },
-  &quot;required&quot;: [&quot;name&quot;,&quot;email&quot;]
-}
-JSON;
-
-$jsonSchema = json_decode($jsonSchemaAsString);
-$schemaStorage = new SchemaStorage();
-$schemaStorage-&gt;addSchema('internal://mySchema', $jsonSchema);
-$validator = new Validator(new Factory($schemaStorage));
-
-$validator-&gt;validate($data, $jsonSchemaObject);
-if ($validator-&gt;isValid()) {
-    echo &quot;The supplied JSON validates against the schema.\n&quot;;
-} else {
-    echo &quot;JSON does not validate. Violations:\n&quot;;
-    foreach ($validator-&gt;getErrors() as $error) {
-        printf(&quot;[%s] %s\n&quot;, $error['property'], $error['message']);
-    }
-}
-</code></pre>
+<h2>Available flags<a id="available-flags" href="#available-flags" class="heading-permalink" title="Permalink"></a></h2>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th align="left"></th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Constraint::CHECK_MODE_NORMAL</code></td>
+<td align="left"></td>
+<td><code>0x00000001</code></td>
+<td>Validate in 'normal' mode - this is the default</td>
+</tr>
+<tr>
+<td><code>Constraint::CHECK_MODE_TYPE_CAST</code></td>
+<td align="left"></td>
+<td><code>0x00000002</code></td>
+<td>Enable fuzzy type checking for associative arrays and objects</td>
+</tr>
+<tr>
+<td><code>Constraint::CHECK_MODE_COERCE_TYPES</code></td>
+<td align="left"></td>
+<td><code>0x00000004</code></td>
+<td>Convert data types to match the schema where possible</td>
+</tr>
+<tr>
+<td><code>Constraint::CHECK_MODE_APPLY_DEFAULTS</code></td>
+<td align="left"></td>
+<td><code>0x00000008</code></td>
+<td>Apply default values from the schema if not set</td>
+</tr>
+<tr>
+<td><code>Constraint::CHECK_MODE_EXCEPTIONS</code></td>
+<td align="left"></td>
+<td><code>0x00000010</code></td>
+<td>Throw an exception immediately if validation fails</td>
+</tr>
+<tr>
+<td><code>Constraint::CHECK_MODE_DISABLE_FORMAT</code></td>
+<td align="left"></td>
+<td><code>0x00000020</code></td>
+<td>Do not validate &quot;format&quot; constraints</td>
+</tr>
+<tr>
+<td><code>Constraint::CHECK_MODE_EARLY_COERCE</code></td>
+<td align="left"></td>
+<td><code>0x00000040</code></td>
+<td>Apply type coercion as soon as possible</td>
+</tr>
+<tr>
+<td><code>Constraint::CHECK_MODE_ONLY_REQUIRED_DEFAULTS</code></td>
+<td align="left"></td>
+<td><code>0x00000080</code></td>
+<td>When applying defaults, only set values that are required</td>
+</tr>
+<tr>
+<td><code>Constraint::CHECK_MODE_VALIDATE_SCHEMA</code></td>
+<td align="left"></td>
+<td><code>0x00000100</code></td>
+<td>Validate the schema as well as the provided document</td>
+</tr>
+</tbody>
+</table>
     </section>
     <footer id="document-footer" class="flex items-center flex-wrap mt-8 prose-p:my-3 justify-between text-[90%]">
         <p class="edit-page-link">
-    <a href="https://github.com/jsonrainbow/docs/edit/main/_docs/getting-started.md">
+    <a href="https://github.com/jsonrainbow/docs/edit/main/_docs/check-mode.md">
         Found a typo?
     </a>
 </p>
