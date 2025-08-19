@@ -1,17 +1,17 @@
 @extends('hyde::layouts.app')
 
 @section('content')
-    <div class="bg-gradient-to-b from-slate-400 to-slate-50 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-400 py-20">
-        <div class="max-w-5xl mx-auto text-center px-4">
+    <div class="bg-gradient-to-b from-slate-400 to-slate-50 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-400 py-10 md:py-20">
+        <div class="max-w-5xl mx-auto text-center md:px-4">
             <!-- Logos -->
-            <div class="flex items-center justify-center gap-6 mb-6">
-                <img src="media/json-schema-logo-blue.svg" alt="JSON Schema Logo" class="h-60 w-60 object-contain">
-                <span class="text-5xl font-bold text-gray-500 dark:text-gray-100">+</span>
-                <img src="media/php-logo.svg" alt="PHP Logo" class="h-60 w-60 object-contain">
+            <div class="flex flex-col md:flex-row items-center justify-center text-center gap-2 md:gap-6 mb-6">
+                <img src="media/json-schema-logo-blue.svg" alt="JSON Schema Logo" class="h-auto w-32 sm:h-36 sm:w-36 md:h-60 md:w-60 object-contain">
+                <span class="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-500 dark:text-gray-100">+</span>
+                <img src="media/php-logo.svg" alt="PHP Logo" class="h-auto w-32 sm:h-36 sm:w-36 md:h-60 md:w-60 object-contain">
             </div>
 
             <!-- Title & Description -->
-            <h1 class="text-5xl font-bold text-stone-800 dark:text-stone-200">JSON Schema for PHP</h1>
+            <h1 class="text-3xl md:text-5xl font-bold text-stone-800 dark:text-stone-200">JSON Schema for PHP</h1>
             <p class="mt-4 text-lg text-stone-600 dark:text-stone-400 max-w-2xl mx-auto">
                 Validate, interpret, and work with JSON Schemas in PHP — fully compatible with the specifications.
             </p>
