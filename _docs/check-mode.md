@@ -10,10 +10,23 @@ JSON Schema for PHP check mode can be configured using the flags from the Constr
 or provided for a single `validate()` call.
 
 ```php
-$checkMode = Constraint::CHECK_MODE_NORMAL | Constraint::CHECK_MODE_VALIDATE_SCHEMA | Constraint::CHECK_MODE_APPLY_DEFAULTS;
+$checkMode = Constraint::CHECK_MODE_NORMAL | Constraint::CHECK_MODE_VALIDATE_SCHEMA;
 
-$validator = new Validator(new Factory(null, null, $checkMode)); // Setting the default check mode for all validate calls.
-$validator->validate($data, $schema, $checkMode); // Or set the check mode for this validation call.
+$validator = new Validator(
+    new Factory(
+        null,
+        null,
+        $checkMode  // Setting the default check mode for all validate calls.
+    )
+);
+
+// -- OR -- 
+
+$validator->validate(
+    $data,
+    $schema,
+    $checkMode  // Or set the check mode for this validation call.
+);
 ```
 
 
