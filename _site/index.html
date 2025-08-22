@@ -20,7 +20,7 @@
 <style>[x-cloak] {display: none!important}</style>
 
 
-    <link rel="stylesheet" href="media/app.css?v=a59783ccdd4cd8cac4dda07ccf5e1ce3">
+    <link rel="stylesheet" href="media/app.css?v=75a67e3d44d3899b5b36454e617be55f">
 
 
 
@@ -112,7 +112,7 @@
         <div class="p-6 bg-white rounded-2xl shadow dark:bg-slate-700">
             <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200 mb-2 ">Standards Compliant</h2>
             <p class="text-gray-600 dark:text-slate-200">
-                Implements the official <a href="https://json-schema.org/specification" class="text-blue-600 hover:text-blue-700 dark:text-sky-400 hover:underline dark:hover:text-sky-300">JSON Schema specification</a>
+                Implements the official <a href="https://json-schema.org/specification" target="_blank" class="text-blue-600 hover:text-blue-700 dark:text-sky-400 hover:underline dark:hover:text-sky-300">JSON Schema specification</a>
                 (Draft 3 and 4), ensuring predictable and reliable validation.
             </p>
         </div>
@@ -123,9 +123,9 @@
             </p>
         </div>
         <div class="p-6 bg-white dark:bg-slate-700 rounded-2xl shadow">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200 mb-2">Extensible</h2>
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200 mb-2">Robust validation engine</h2>
             <p class="text-gray-600 dark:text-slate-200">
-                Built with extensibility in mind — customize validation rules, add formats, or adapt to domain-specific requirements.
+                Validate data against schemas with precision and speed, independently verified through the <a href="https://bowtie.report/#/implementations/php-justinrainbow-json-schema" target="_blank" class="text-blue-600 hover:text-blue-700 dark:text-sky-400 hover:underline dark:hover:text-sky-300">Bowtie</a> compliance suite.
             </p>
         </div>
     </div>
@@ -157,20 +157,60 @@ if ($validator->isValid()) {
     </div>
     </section>
 
-    <footer aria-label="Page footer" class="flex py-4 px-6 w-full text-center mt-auto bg-slate-50 dark:bg-gray-800">
-        <div class="prose dark:prose-invert text-center mx-auto ">
-            <p>Site proudly built with <a class="text-blue-600 hover:text-blue-700 dark:text-sky-400 hover:underline dark:hover:text-sky-300" href="https://github.com/hydephp/hyde">HydePHP</a> 🎩</p>
+    <footer class="w-full bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-5xl mx-auto py-4">
+            <h2 class="text-lg mb-4">
+                JSON Schema for PHP
+            </h2>
+
+            <div class="flex flex-wrap justify-between items-start gap-6 mb-4">
+                <div class="text-stone-600 dark:text-stone-300 text-sm flex-1">
+                    <p class="">
+                        Validate, interpret, and work with JSON Schemas in PHP — fully compatible with the specifications.
+                    </p>
+                </div>
+
+                <!-- Resources -->
+                <div class="flex flex-col space-y-2 text-sm flex-1 ml-32">
+                    <h4 class="text-l font-semibold">Developers</h4>
+                    <a href="https://github.com/jsonrainbow" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
+                        <span>GitHub Organization</span>
+                    </a>
+                    <a href="https://github.com/jsonrainbow/json-schema" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
+                        <span>Source code</span>
+                    </a>
+                </div>
+
+                <!-- Developers -->
+                <div class="flex flex-col space-y-2 text-sm flex-1">
+                    <h4 class="text-l font-semibold">Resources</h4>
+                    <a href="docs/getting-started" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
+                        <span>Documentation</span>
+                    </a>
+                </div>
+
+                <!-- Extra -->
+                <div class="flex flex-col space-y-2 text-sm flex-1">
+                    <h4 class="text-l font-semibold">Extra</h4>
+                    <a href="sitemap.html" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
+                        <span>Sitemap</span>
+                    </a>
+                    <a href="feed.xml" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
+                        <span>RSS Feed</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Attribution -->
+            <div class="text-gray-600 dark:text-gray-300 text-sm flex-1 text-center
+">
+                <p> This site was build using <a href="https://hydephp.com/" class="text-indigo-600">HydePHP</a>
+                    and <a href="https://torchlight.dev/" class="text-indigo-600">Torchlight.dev</a></p>
+            </div>
         </div>
-        <a href="#app" aria-label="Go to top of page" class="float-right">
-            <button title="Scroll to top">
-                <svg width="1.5rem" height="1.5rem" role="presentation" class="fill-current text-gray-500 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
-                </svg>
-            </button>
-        </a>
     </footer>
 
-    <script defer src="media/app.js?v=df4829542141b3634f113c4cb9e386aa"></script>
+    <script defer src="media/app.js?v=193cddf0008948834d6c443cca212826"></script>
 
 
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js" integrity="sha256-gOkV4d9/FmMNEkjOzVlyM2eNAWSUXisT+1RbMTTIgXI=" crossorigin="anonymous"></script>

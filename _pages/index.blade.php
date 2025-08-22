@@ -31,7 +31,7 @@
         <div class="p-6 bg-white rounded-2xl shadow dark:bg-slate-700">
             <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200 mb-2 ">Standards Compliant</h2>
             <p class="text-gray-600 dark:text-slate-200">
-                Implements the official <a href="https://json-schema.org/specification" class="text-blue-600 hover:text-blue-700 dark:text-sky-400 hover:underline dark:hover:text-sky-300">JSON Schema specification</a>
+                Implements the official <a href="https://json-schema.org/specification" target="_blank" class="text-blue-600 hover:text-blue-700 dark:text-sky-400 hover:underline dark:hover:text-sky-300">JSON Schema specification</a>
                 (Draft 3 and 4), ensuring predictable and reliable validation.
             </p>
         </div>
@@ -42,9 +42,9 @@
             </p>
         </div>
         <div class="p-6 bg-white dark:bg-slate-700 rounded-2xl shadow">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200 mb-2">Extensible</h2>
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200 mb-2">Robust validation engine</h2>
             <p class="text-gray-600 dark:text-slate-200">
-                Built with extensibility in mind — customize validation rules, add formats, or adapt to domain-specific requirements.
+                Validate data against schemas with precision and speed, independently verified through the <a href="https://bowtie.report/#/implementations/php-justinrainbow-json-schema" target="_blank" class="text-blue-600 hover:text-blue-700 dark:text-sky-400 hover:underline dark:hover:text-sky-300">Bowtie</a> compliance suite.
             </p>
         </div>
     </div>
