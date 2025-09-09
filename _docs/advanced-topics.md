@@ -67,4 +67,27 @@ if ($validator->isValid()) {
 This paragraph needs to be written, want to help out? Checkout GitHub repo!
 
 ## Using custom error messages
-This paragraph needs to be written, want to help out? Checkout GitHub repo!
+All the errors returned from the library contain a unique constraint name. Using this constraint name you can replace the
+error message with own, adjusting for your tone of voice or language.
+
+```php
+<?php 
+
+$data = '{"age": "John Doe"}'
+$jsonSchemaAsString = ' { "type": "object", "properties": { "age": { "type": "integer" } } } ';
+
+$jsonSchema = json_decode($jsonSchemaAsString);
+$schemaStorage = new JsonSchema\SchemaStorage();
+$schemaStorage->addSchema('internal://mySchema', $jsonSchema);
+$validator = new JsonSchema\Validator(
+    new JsonSchema\Constraints\Factory($schemaStorage)
+);
+$validator->validate($data, $jsonSchemaObject);
+
+foreach ($validator->getErrors() as $error) {
+    echo sprintf(
+        customErrorMessagePatternFunction($error['constraint']['name']),
+        ...$error['constraint']['params']
+    );
+}
+```

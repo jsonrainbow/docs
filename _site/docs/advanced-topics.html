@@ -20,7 +20,7 @@
 <style>[x-cloak] {display: none!important}</style>
 
 
-    <link rel="stylesheet" href="../media/app.css?v=f51c82a9ba6181768af469d171764776">
+    <link rel="stylesheet" href="../media/app.css?v=75a67e3d44d3899b5b36454e617be55f">
 
 
 
@@ -78,8 +78,8 @@
             Getting started
         </a>
     </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
-            <a href="../docs/configuration.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
-            Configuration
+            <a href="../docs/check-mode.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
+            Check mode
         </a>
     </li>                    <li class="sidebar-item -ml-4 pl-4 active bg-black/5 dark:bg-black/10" role="listitem">
             <a href="../docs/advanced-topics.html" aria-current="true" class="-ml-4 p-2 block hover:bg-black/5 dark:hover:bg-black/10 text-indigo-600 dark:text-indigo-400 dark:font-medium border-l-[0.325rem] border-indigo-500 transition-colors duration-300 ease-in-out">
@@ -87,12 +87,14 @@
         </a>
 
                     <span class="sr-only">Table of contents</span>
-            
+            <ul class="table-of-contents">
+<li><a href="#validation-using-schema-on-disk">Validation using schema on disk</a></li>
+<li><a href="#validation-using-inline-schema">Validation using inline schema</a></li>
+<li><a href="#validation-using-online-schema">Validation using online schema</a></li>
+<li><a href="#using-custom-error-messages">Using custom error messages</a></li>
+</ul>
+
             </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
-            <a href="../docs/community-guide.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
-            Community guide
-        </a>
-    </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
             <a href="../docs/contributors.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
             Contributors
         </a>
@@ -110,7 +112,83 @@
         <h1>Advanced topics</h1>
     </header>
     <section id="document-main-content" itemprop="articleBody">
-        <p>This page needs to be written, want to help out? Checkout GitHub repo!</p>
+        <h2>Validation using schema on disk<a id="validation-using-schema-on-disk" href="#validation-using-schema-on-disk" class="heading-permalink" title="Permalink"></a></h2>
+<p>Validation of a JSON document can be done using a schema located on disk.</p>
+<pre><code class="language-php">&lt;?php
+
+$data = json_decode(file_get_contents('data.json'));
+
+// Validate
+$validator = new JsonSchema\Validator;
+$validator-&gt;validate($data, (object)['$ref' =&gt; 'file://' . realpath('schema.json')]);
+
+if ($validator-&gt;isValid()) {
+    echo &quot;The supplied JSON validates against the schema.\n&quot;;
+} else {
+    echo &quot;JSON does not validate. Violations:\n&quot;;
+    foreach ($validator-&gt;getErrors() as $error) {
+        printf(&quot;[%s] %s\n&quot;, $error['property'], $error['message']);
+    }
+}
+</code></pre>
+<h2>Validation using inline schema<a id="validation-using-inline-schema" href="#validation-using-inline-schema" class="heading-permalink" title="Permalink"></a></h2>
+<p>Validation of a JSON document can be done using a inline schema. This requires some additional setup of the schema storage</p>
+<pre><code class="language-php">&lt;?php
+
+$data = json_decode(file_get_contents('data.json'));
+$jsonSchemaAsString = &lt;&lt;&lt;'JSON'
+{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;name&quot;: { &quot;type&quot;: &quot;string&quot;},
+    &quot;email&quot;: {&quot;type&quot;: &quot;string&quot;}
+  },
+  &quot;required&quot;: [&quot;name&quot;,&quot;email&quot;]
+}
+JSON;
+
+$jsonSchema = json_decode($jsonSchemaAsString);
+$schemaStorage = new JsonSchema\SchemaStorage();
+$schemaStorage-&gt;addSchema('internal://mySchema', $jsonSchema);
+$validator = new JsonSchema\Validator(
+    new JsonSchema\Constraints\Factory($schemaStorage)
+);
+$validator-&gt;validate($data, $jsonSchemaObject);
+
+if ($validator-&gt;isValid()) {
+    echo &quot;The supplied JSON validates against the schema.\n&quot;;
+} else {
+    echo &quot;JSON does not validate. Violations:\n&quot;;
+    foreach ($validator-&gt;getErrors() as $error) {
+        printf(&quot;[%s] %s\n&quot;, $error['property'], $error['message']);
+    }
+}
+</code></pre>
+<h2>Validation using online schema<a id="validation-using-online-schema" href="#validation-using-online-schema" class="heading-permalink" title="Permalink"></a></h2>
+<p>This paragraph needs to be written, want to help out? Checkout GitHub repo!</p>
+<h2>Using custom error messages<a id="using-custom-error-messages" href="#using-custom-error-messages" class="heading-permalink" title="Permalink"></a></h2>
+<p>All the errors returned from the library contain a unique constraint name. Using this constraint name you can replace the
+error message with own, adjusting for your tone of voice or language.</p>
+<pre><code class="language-php">&lt;?php 
+
+$data = '{&quot;age&quot;: &quot;John Doe&quot;}'
+$jsonSchemaAsString = ' { &quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: { &quot;age&quot;: { &quot;type&quot;: &quot;integer&quot; } } } ';
+
+$jsonSchema = json_decode($jsonSchemaAsString);
+$schemaStorage = new JsonSchema\SchemaStorage();
+$schemaStorage-&gt;addSchema('internal://mySchema', $jsonSchema);
+$validator = new JsonSchema\Validator(
+    new JsonSchema\Constraints\Factory($schemaStorage)
+);
+$validator-&gt;validate($data, $jsonSchemaObject);
+
+foreach ($validator-&gt;getErrors() as $error) {
+    echo sprintf(
+        customErrorMessagePatternFunction($error['constraint']['name']),
+        ...$error['constraint']['params']
+    );
+}
+</code></pre>
     </section>
     <footer id="document-footer" class="flex items-center flex-wrap mt-8 prose-p:my-3 justify-between text-[90%]">
         <p class="edit-page-link">
@@ -188,7 +266,7 @@
     });
 </script>            </div>
 
-    <script defer src="../media/app.js?v=df4829542141b3634f113c4cb9e386aa"></script>
+    <script defer src="../media/app.js?v=193cddf0008948834d6c443cca212826"></script>
 
 
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js" integrity="sha256-gOkV4d9/FmMNEkjOzVlyM2eNAWSUXisT+1RbMTTIgXI=" crossorigin="anonymous"></script>

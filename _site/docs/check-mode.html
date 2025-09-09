@@ -20,7 +20,7 @@
 <style>[x-cloak] {display: none!important}</style>
 
 
-    <link rel="stylesheet" href="../media/app.css?v=a59783ccdd4cd8cac4dda07ccf5e1ce3">
+    <link rel="stylesheet" href="../media/app.css?v=75a67e3d44d3899b5b36454e617be55f">
 
 
 
@@ -92,10 +92,6 @@
             Advanced topics
         </a>
     </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
-            <a href="../docs/community-guide.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
-            Community guide
-        </a>
-    </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
             <a href="../docs/contributors.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
             Contributors
         </a>
@@ -115,10 +111,23 @@
     <section id="document-main-content" itemprop="articleBody">
         <p>JSON Schema for PHP check mode can be configured using the flags from the Constraint class. These can be configured as default
 or provided for a single <code>validate()</code> call.</p>
-<pre><code class="language-php">$checkMode = Constraint::CHECK_MODE_NORMAL | Constraint::CHECK_MODE_VALIDATE_SCHEMA | Constraint::CHECK_MODE_APPLY_DEFAULTS;
+<pre><code class="language-php">$checkMode = Constraint::CHECK_MODE_NORMAL | Constraint::CHECK_MODE_VALIDATE_SCHEMA;
 
-$validator = new Validator(new Factory(null, null, $checkMode)); // Setting the default check mode for all validate calls.
-$validator-&gt;validate($data, $schema, $checkMode); // Or set the check mode for this validation call.
+$validator = new Validator(
+    new Factory(
+        null,
+        null,
+        $checkMode  // Setting the default check mode for all validate calls.
+    )
+);
+
+// -- OR -- 
+
+$validator-&gt;validate(
+    $data,
+    $schema,
+    $checkMode  // Or set the check mode for this validation call.
+);
 </code></pre>
 <h2>Available flags<a id="available-flags" href="#available-flags" class="heading-permalink" title="Permalink"></a></h2>
 <table>
@@ -264,7 +273,7 @@ $validator-&gt;validate($data, $schema, $checkMode); // Or set the check mode fo
     });
 </script>            </div>
 
-    <script defer src="../media/app.js?v=df4829542141b3634f113c4cb9e386aa"></script>
+    <script defer src="../media/app.js?v=193cddf0008948834d6c443cca212826"></script>
 
 
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js" integrity="sha256-gOkV4d9/FmMNEkjOzVlyM2eNAWSUXisT+1RbMTTIgXI=" crossorigin="anonymous"></script>
