@@ -69,10 +69,10 @@ Validation of a JSON document can be done using a schema hosted online. The vali
 ```php
 <?php
 
-$data = json_decode(file_get_contents('data.json'));
+$data = json_decode(file_get_contents('data.json'), false);
 
 // Validate against an online schema by passing the URL as a $ref
-$validator = new JsonSchema\Validator;
+$validator = new JsonSchema\Validator();
 $validator->validate($data, (object)['$ref' => 'https://example.com/your/schema.json']);
 
 if ($validator->isValid()) {
@@ -107,7 +107,7 @@ $schemaStorage->addSchema($schemaUrl, $schema);
 
 $validator = new Validator(new Factory($schemaStorage));
 
-$data = json_decode(file_get_contents('data.json'));
+$data = json_decode(file_get_contents('data.json'), false);
 $validator->validate($data, $schema);
 
 if ($validator->isValid()) {
