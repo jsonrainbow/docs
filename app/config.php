@@ -73,6 +73,7 @@ return [
         Hyde\Foundation\Providers\ConfigurationServiceProvider::class,
         Hyde\Framework\HydeServiceProvider::class,
         Hyde\Foundation\Providers\ViewServiceProvider::class,
+        Hyde\Foundation\Providers\NavigationServiceProvider::class,
         Hyde\Console\ConsoleServiceProvider::class,
     ],
 
@@ -105,6 +106,8 @@ return [
         'DataCollections' => \Hyde\Support\DataCollections::class,
         'Includes' => \Hyde\Support\Includes::class,
         'Feature' => \Hyde\Enums\Feature::class,
+        'HydeFront' => \Hyde\Facades\HydeFront::class,
+        'Vite' => \Hyde\Facades\Vite::class,
     ],
 
 ];
