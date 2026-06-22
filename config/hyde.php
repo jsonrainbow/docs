@@ -25,7 +25,7 @@
 use Hyde\Facades\Author;
 use Hyde\Enums\Feature;
 use Hyde\Facades\Meta;
-use Hyde\Framework\Features\Navigation\NavItem;
+use Hyde\Facades\Navigation;
 
 return [
 
@@ -305,7 +305,7 @@ return [
     | You can disable it completely by changing the setting to `false`.
     |
     | To read about the many configuration options here, visit:
-    | https://hydephp.com/docs/1.x/customization#footer
+    | https://hydephp.com/docs/2.x/customization#footer
     |
     */
 
@@ -351,7 +351,7 @@ return [
         // To get started quickly, you can uncomment the defaults here.
         // See the documentation link above for more information.
         'custom' => [
-            NavItem::forLink('https://github.com/jsonrainbow/json-schema', 'GitHub', 200),
+            Navigation::item('https://github.com/jsonrainbow/json-schema', 'GitHub', 200),
         ],
 
         // How should pages in subdirectories be displayed in the menu?
@@ -364,7 +364,7 @@ return [
     | Cache Busting
     |--------------------------------------------------------------------------
     |
-    | Any assets loaded using the Asset::mediaLink() helper will automatically
+    | Any assets loaded using the Asset::get() helper will automatically
     | have a cache busting query string appended to the URL. This is useful
     | when you want to force browsers to load a new version of an asset.
     |
@@ -477,11 +477,6 @@ return [
 
     // Where should the build manifest be saved? (Relative to project root, for example _site/build-manifest.json)
     'build_manifest_path' => 'app/storage/framework/cache/build-manifest.json',
-
-    // Here you can specify HydeFront version and URL for when loading app.css from the CDN.
-    // Only change these if you know what you're doing as some versions may be incompatible with your Hyde version.
-    'hydefront_version' => \Hyde\Framework\Services\AssetService::HYDEFRONT_VERSION,
-    'hydefront_cdn_url' => \Hyde\Framework\Services\AssetService::HYDEFRONT_CDN_URL,
 
     // Should the theme toggle buttons be displayed in the layouts?
     'theme_toggle_buttons' => true,

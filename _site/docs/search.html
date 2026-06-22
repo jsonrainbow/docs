@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JSON Schema for PHP - Check mode</title>
+<title>JSON Schema for PHP - Search</title>
 
 
 
-<meta name="twitter:title" content="JSON Schema for PHP - Check mode">
-<meta property="og:title" content="JSON Schema for PHP - Check mode">
+<meta name="twitter:title" content="JSON Schema for PHP - Search">
+<meta property="og:title" content="JSON Schema for PHP - Search">
 
 
 <meta name="generator" content="HydePHP v2.0.2">
@@ -85,22 +85,11 @@
             <a href="../docs/getting-started.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
             Getting started
         </a>
-    </li>                    <li class="sidebar-item -ml-4 pl-4 active bg-black/5 dark:bg-black/10" role="listitem">
-            <a href="../docs/check-mode.html" aria-current="true" class="-ml-4 p-2 block hover:bg-black/5 dark:hover:bg-black/10 text-indigo-600 dark:text-indigo-400 dark:font-medium border-l-[0.325rem] border-indigo-500 transition-colors duration-300 ease-in-out">
+    </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
+            <a href="../docs/check-mode.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
             Check mode
         </a>
-
-                    <span class="sr-only">Table of contents</span>
-            <ul class="table-of-contents pb-3">
-                    <li class="my-0.5">
-                                    <a href="#available-flags" class="-ml-8 pl-8 opacity-80 hover:opacity-100 hover:bg-gray-200/20 transition-all duration-300">
-                        <span class="text-[75%] opacity-50 hover:opacity-100 transition-opacity duration-300">#</span>
-                        Available flags
-                    </a>
-                
-                            </li>
-            </ul>
-            </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
+    </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
             <a href="../docs/advanced-topics.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
             Advanced topics
         </a>
@@ -113,112 +102,140 @@
     </aside>
     <main id="content" class="dark:bg-gray-900 min-h-screen bg-gray-50 md:bg-white absolute top-16 md:top-0 w-screen md:left-64 md:w-[calc(100vw_-_16rem)] print:top-0">
         <article id="document" itemscope itemtype="https://schema.org/Article" class="mx-auto lg:ml-8 max-w-3xl p-12 md:px-16 max-w-[1000px] min-h-[calc(100vh_-_4rem)] prose dark:prose-invert">
-    
-            <header id="document-header" class="flex items-center flex-wrap justify-between prose-h1:mb-3">
-            <h1>Check mode</h1>
-        </header>
-        <section id="document-main-content" itemprop="articleBody">
-            <p>JSON Schema for PHP check mode can be configured using the flags from the Constraint class. These can be configured as default
-or provided for a single <code>validate()</code> call.</p>
-<pre><code class="language-php">$checkMode = Constraint::CHECK_MODE_NORMAL | Constraint::CHECK_MODE_VALIDATE_SCHEMA;
+            <h1>Search the JSON Schema for PHP Documentation</h1>
+    <style>#search-menu-button, .edit-page-link { display: none !important; }</style>
+    <div class="not-prose">
+        <div id="hyde-search" x-data="hydeSearch">
+    <template id="search-highlight-template">
+        <mark class="bg-yellow-400 dark:bg-yellow-300"></mark>
+    </template>
 
-$validator = new Validator(
-    new Factory(
-        null,
-        null,
-        $checkMode  // Setting the default check mode for all validate calls.
-    )
-);
+    <div class="relative">
+        <input type="search" name="search" id="search-input" x-model="searchTerm" @input="search()" placeholder="Search..." autocomplete="off" autofocus
+                class="w-full rounded-sm text-base leading-normal bg-gray-100 dark:bg-gray-700 py-2 px-3 max-w-sm"
+        >
 
-// -- OR -- 
+        <div x-show="isLoading" class="absolute right-3 top-2.5">
+            <div class="animate-spin h-5 w-5 border-2 border-gray-500 rounded-full border-t-transparent"></div>
+        </div>
+    </div>
 
-$validator-&gt;validate(
-    $data,
-    $schema,
-    $checkMode  // Or set the check mode for this validation call.
-);
-</code></pre>
-<h2 id="available-flags" class="group w-fit scroll-mt-2">Available flags<a href="#available-flags" class="heading-permalink opacity-0 ml-1 transition-opacity duration-300 ease-linear px-1 group-hover:opacity-100 focus:opacity-100 group-hover:grayscale-0 focus:grayscale-0" title="Permalink">#</a></h2>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th align="left"></th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Constraint::CHECK_MODE_NORMAL</code></td>
-<td align="left"></td>
-<td><code>0x00000001</code></td>
-<td>Validate in 'normal' mode - this is the default</td>
-</tr>
-<tr>
-<td><code>Constraint::CHECK_MODE_TYPE_CAST</code></td>
-<td align="left"></td>
-<td><code>0x00000002</code></td>
-<td>Enable fuzzy type checking for associative arrays and objects</td>
-</tr>
-<tr>
-<td><code>Constraint::CHECK_MODE_COERCE_TYPES</code></td>
-<td align="left"></td>
-<td><code>0x00000004</code></td>
-<td>Convert data types to match the schema where possible</td>
-</tr>
-<tr>
-<td><code>Constraint::CHECK_MODE_APPLY_DEFAULTS</code></td>
-<td align="left"></td>
-<td><code>0x00000008</code></td>
-<td>Apply default values from the schema if not set</td>
-</tr>
-<tr>
-<td><code>Constraint::CHECK_MODE_EXCEPTIONS</code></td>
-<td align="left"></td>
-<td><code>0x00000010</code></td>
-<td>Throw an exception immediately if validation fails</td>
-</tr>
-<tr>
-<td><code>Constraint::CHECK_MODE_DISABLE_FORMAT</code></td>
-<td align="left"></td>
-<td><code>0x00000020</code></td>
-<td>Do not validate &quot;format&quot; constraints</td>
-</tr>
-<tr>
-<td><code>Constraint::CHECK_MODE_EARLY_COERCE</code></td>
-<td align="left"></td>
-<td><code>0x00000040</code></td>
-<td>Apply type coercion as soon as possible</td>
-</tr>
-<tr>
-<td><code>Constraint::CHECK_MODE_ONLY_REQUIRED_DEFAULTS</code></td>
-<td align="left"></td>
-<td><code>0x00000080</code></td>
-<td>When applying defaults, only set values that are required</td>
-</tr>
-<tr>
-<td><code>Constraint::CHECK_MODE_VALIDATE_SCHEMA</code></td>
-<td align="left"></td>
-<td><code>0x00000100</code></td>
-<td>Validate the schema as well as the provided document</td>
-</tr>
-<tr>
-<td><code>Constraint::CHECK_MODE_STRICT</code></td>
-<td align="left"></td>
-<td><code>0x00000200</code></td>
-<td>Validate the schema using strict mode, respecting the $schema identifier</td>
-</tr>
-</tbody>
-</table>
-        </section>
-        <footer id="document-footer" class="flex items-center flex-wrap mt-8 prose-p:my-3 justify-between text-[90%]">
-            <p class="edit-page-link">
-    <a href="https://github.com/jsonrainbow/docs/edit/main/_docs/check-mode.md">
-        Found a typo?
-    </a>
-</p>
-        </footer>
+    <div x-show="searchTerm" class="mt-4">
+        <p x-text="statusMessage" class="text-sm text-gray-600 dark:text-gray-400 mb-2 pb-2"></p>
+
+        <dl class="space-y-4 -mt-4 pl-2 -ml-2 ">
+            <template x-for="result in results" :key="result.slug">
+                <div>
+                    <dt>
+                        <a :href="result.destination" x-text="result.title" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"></a><span class="text-sm text-gray-600 dark:text-gray-400" x-text="`, ${result.matches} occurrence${result.matches !== 1 ? 's' : ''} found.`"></span>
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-700 dark:text-gray-300" x-html="result.context"></dd>
+                </div>
+            </template>
+        </dl>
+    </div>
+
+    <script>
+		/**
+ * This file provides support for the Alpine.js search component.
+ *
+ * It's automatically loaded by the hyde-search.blade.php component.
+ *
+ * It can be replaced by a custom implementation, at the developer's own risk,
+ * by providing a new compatible implementation in ./resources/js/HydeSearch.js.
+ *
+ * @param {string} searchIndexUrl
+ * @returns {Object}
+ */
+function initHydeSearch(searchIndexUrl) {
+    return {
+        searchIndex: [],
+        searchTerm: '',
+        results: [],
+        isLoading: true,
+        statusMessage: '',
+
+        async init() {
+            const response = await fetch(searchIndexUrl);
+            if (!response.ok) {
+                console.error('Could not load search index');
+                return;
+            }
+            this.searchIndex = await response.json();
+            this.isLoading = false;
+        },
+
+        search() {
+            const startTime = performance.now();
+            this.results = [];
+
+            if (!this.searchTerm) {
+                this.statusMessage = '';
+                window.dispatchEvent(new CustomEvent('search-results-updated', { detail: { hasResults: false } }));
+                return;
+            }
+
+            const searchResults = this.searchIndex.filter(entry =>
+                entry.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                entry.content.toLowerCase().includes(this.searchTerm.toLowerCase())
+            );
+
+            if (searchResults.length === 0) {
+                this.statusMessage = 'No results found.';
+                window.dispatchEvent(new CustomEvent('search-results-updated', { detail: { hasResults: false } }));
+                return;
+            }
+
+            const totalMatches = searchResults.reduce((acc, result) => {
+                return acc + (result.content.match(new RegExp(this.searchTerm, 'gi')) || []).length;
+            }, 0);
+
+            searchResults.sort((a, b) => {
+                return (b.content.match(new RegExp(this.searchTerm, 'gi')) || []).length
+                    - (a.content.match(new RegExp(this.searchTerm, 'gi')) || []).length;
+            });
+
+            this.results = searchResults.map(result => {
+                const matches = (result.content.match(new RegExp(this.searchTerm, 'gi')) || []).length;
+                const context = this.getSearchContext(result.content);
+                return { ...result, matches, context };
+            });
+
+            const timeMs = Math.round((performance.now() - startTime) * 100) / 100;
+            this.statusMessage = `Found ${totalMatches} result${totalMatches !== 1 ? 's' : ''} in ${searchResults.length} pages. ~${timeMs}ms`;
+
+            window.dispatchEvent(new CustomEvent('search-results-updated', { detail: { hasResults: true } }));
+        },
+
+        getSearchContext(content) {
+            const searchTermPos = content.toLowerCase().indexOf(this.searchTerm.toLowerCase());
+            const sentenceStart = content.lastIndexOf('.', searchTermPos) + 1;
+            const sentenceEnd = content.indexOf('.', searchTermPos) + 1;
+            const sentence = content.substring(sentenceStart, sentenceEnd).trim();
+            const template = document.getElementById('search-highlight-template');
+
+            return sentence.replace(
+                new RegExp(this.searchTerm, 'gi'),
+                match => {
+                    const mark = template.content.querySelector('mark').cloneNode();
+                    mark.textContent = match;
+                    return mark.outerHTML;
+                }
+            );
+        }
+    };
+}
+
+        
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('hydeSearch', () => 
+                initHydeSearch('../docs/search.json')
+            );
+        });
+    </script>
+</div>
+    </div>
+
     </article>    </main>
 
     <div id="support">
