@@ -1,20 +1,99 @@
-/*
-* This file is loaded into your Hyde/Hyde installation and is used to generate the styles for your project.
-* You can use this file to customize your TailwindCSS or to add new classes.
-*
-* The HydeFront package contains some base styles to make your site look even more amazing.
-*
-* The compiled result of this file is shipped with HydePHP and is found at _media/app.css,
-* so you don't need to compile this file unless you're making changes.
-*
-* If you want, you can load the compiled file with minified styles for a base install from the CDN.
-* See https://hydephp.com/docs/1.x/managing-assets#loading-from-cdn
-*/
+@import "tailwindcss";
 
-@import '~hydefront/dist/hyde.css';
+@import "hydefront/components/torchlight.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@plugin "@tailwindcss/typography";
+
+/* Scan Hyde Blade templates for utility classes */
+@source "./_pages/**/*.blade.php";
+@source "./resources/views/**/*.blade.php";
+@source "./vendor/hyde/framework/resources/views/**/*.blade.php";
+
+/* Class-based dark mode — Hyde adds 'dark' class to <html> */
+@custom-variant dark (&:is(.dark *));
+
+/* Custom indigo accent colour */
+@theme {
+    --color-indigo-500: #5956eb;
+}
+
+/* Typography customisations */
+.prose {
+    line-height: 1.5em;
+    max-width: 96ch;
+}
+
+.prose h2 {
+    margin-bottom: 0.75em;
+    margin-top: 1.5em;
+}
+
+.prose a {
+    color: #5956eb;
+    text-decoration: none;
+}
+
+.prose a:hover {
+    color: #4f46e5;
+}
+
+.prose blockquote {
+    background-color: #80808020;
+    border-left-color: #d1d5db;
+    color: unset;
+    font-weight: 500;
+    font-style: unset;
+    line-height: 1.25em;
+    padding-left: 0.75em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.prose blockquote p {
+    padding-right: .25em;
+    margin-top: .25em;
+    margin-bottom: .25em;
+}
+
+.prose blockquote p::before {
+    content: unset;
+}
+
+.prose blockquote p::after {
+    content: unset;
+}
+
+.prose code {
+    font: unset;
+    background-color: #80808033;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-left: -2px;
+    margin-right: 1px;
+    border-radius: 4px;
+}
+
+.prose code::before {
+    content: unset;
+}
+
+.prose code::after {
+    content: unset;
+}
+
+.prose pre code {
+    font-family: 'Fira Code Regular', Consolas, Monospace, 'Courier New';
+}
+
+/* Dark mode typography overrides */
+.prose-invert a {
+    color: #818cf8;
+}
+
+.prose-invert a:hover {
+    color: #6366f1;
+}
 
 [x-cloak] { display: none !important; }
