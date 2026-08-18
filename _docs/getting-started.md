@@ -63,7 +63,7 @@ $schemaStorage = new SchemaStorage();
 $schemaStorage->addSchema('internal://mySchema', $jsonSchema);
 $validator = new Validator(new Factory($schemaStorage));
 
-$validator->validate($data, $jsonSchemaObject);
+$validator->validate($data, $jsonSchema);
 if ($validator->isValid()) {
     echo "The supplied JSON validates against the schema.\n";
 } else {
