@@ -135,67 +135,6 @@ URIs yourself: `DRAFT_3`, `DRAFT_4`, `DRAFT_6`, `DRAFT_7`, `DRAFT_2019_09` and `
 A `$schema` keyword in the schema always wins over the default dialect. The default only applies when the keyword is
 absent.
 
-## Unsupported drafts throw
-
-Asking strict mode for a draft that has no constraint set — either through `$schema` or through
-`setDefaultDialect()` — throws an `InvalidArgumentException`:
-
-```
-InvalidArgumentException: Unknown constraint draft2020-12
-```
-
-If you validate schemas of mixed origin, either keep strict mode off for those, or catch this exception and fall back
-to normal validation.
-
-## Differences between the dialects
-
-Each dialect evaluates the keywords of its own draft, and only those. The keywords that differ between the three
-supported dialects are:
-
-| Keyword                              | Draft 6 | Draft 7 | Draft 2019-09 |
-|--------------------------------------|:-------:|:-------:|:-------------:|
-| `dependencies`                       | yes     | yes     | no            |
-| `dependentRequired`                  | no      | no      | yes           |
-| `dependentSchemas`                   | no      | no      | yes           |
-| `if` / `then` / `else`               | no      | yes     | yes           |
-| `contentEncoding`, `contentMediaType`| no      | yes     | yes           |
-
-Watch out for `dependencies` when moving a schema to Draft 2019-09. That draft splits the keyword in two, so a schema
-that declares Draft 2019-09 while still using `dependencies` has it **silently ignored** in strict mode — the
-document validates even when the dependency is unmet.
-
-Replace it with the keyword matching your intent. A list of property names becomes `dependentRequired`:
-
-```json
-{
-  "dependencies": { "creditCard": ["billingAddress"] }
-}
-```
-
-```json
-{
-  "dependentRequired": { "creditCard": ["billingAddress"] }
-}
-```
-
-A subschema becomes `dependentSchemas`:
-
-```json
-{
-  "dependencies": {
-    "creditCard": { "properties": { "billingAddress": { "type": "string" } } }
-  }
-}
-```
-
-```json
-{
-  "dependentSchemas": {
-    "creditCard": { "properties": { "billingAddress": { "type": "string" } } }
-  }
-}
-```
-
 ## Related
 
 Strict mode is one of several check mode flags, and can be combined with the others. See
