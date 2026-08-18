@@ -41,4 +41,6 @@ $validator->validate(
 | `Constraint::CHECK_MODE_EARLY_COERCE`           |   | `0x00000040` | Apply type coercion as soon as possible                                  |
 | `Constraint::CHECK_MODE_ONLY_REQUIRED_DEFAULTS` |   | `0x00000080` | When applying defaults, only set values that are required                |
 | `Constraint::CHECK_MODE_VALIDATE_SCHEMA`        |   | `0x00000100` | Validate the schema as well as the provided document                     |
-| `Constraint::CHECK_MODE_STRICT`                 |   | `0x00000200` | Validate the schema using strict mode, respecting the $schema identifier |
+| `Constraint::CHECK_MODE_STRICT`                 |   | `0x00000200` | Validate the document using the constraint set of the draft named in `$schema` |
+
+The `CHECK_MODE_STRICT` flag is covered in more detail on the [Strict mode](strict-mode.html) page.
