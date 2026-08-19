@@ -26,7 +26,7 @@
                 <!-- Developers -->
                 <div class="flex flex-col space-y-2 text-sm flex-1">
                     <h4 class="text-l font-semibold">Resources</h4>
-                    <a href="{{ url('docs/getting-started') }}" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
+                    <a href="{{ Hyde::relativeLink('docs/getting-started.html') }}" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
                         <span>Documentation</span>
                     </a>
                 </div>
@@ -34,19 +34,23 @@
                 <!-- Extra -->
                 <div class="flex flex-col space-y-2 text-sm flex-1">
                     <h4 class="text-l font-semibold">Extra</h4>
-                    <a href="{{ Hyde::relativeLink('sitemap.html') }}" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
-                        <span>Sitemap</span>
-                    </a>
-                    <a href="{{ Hyde::relativeLink('feed.xml') }}" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
-                        <span>RSS Feed</span>
-                    </a>
+                    @if(Features::hasSitemap())
+                        <a href="{{ Hyde::relativeLink('sitemap.xml') }}" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
+                            <span>Sitemap</span>
+                        </a>
+                    @endif
+                    @if(Features::hasRss())
+                        <a href="{{ Hyde::relativeLink(\Hyde\Framework\Features\XmlGenerators\RssFeedGenerator::getFilename()) }}" class="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600">
+                            <span>RSS Feed</span>
+                        </a>
+                    @endif
                 </div>
             </div>
 
             <!-- Attribution -->
             <div class="text-gray-600 dark:text-gray-300 text-sm flex-1 text-center
 ">
-                <p> This site was build using <a href="https://hydephp.com/" class="text-indigo-600">HydePHP</a>
+                <p> This site was built using <a href="https://hydephp.com/" class="text-indigo-600">HydePHP</a>
                     and <a href="https://torchlight.dev/" class="text-indigo-600">Torchlight.dev</a></p>
             </div>
         </div>

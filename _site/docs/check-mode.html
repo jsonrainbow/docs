@@ -7,11 +7,13 @@
 
 
 
+<link rel="canonical" href="https://jsonrainbow.github.io/docs/docs/check-mode.html">
 <meta name="twitter:title" content="JSON Schema for PHP - Check mode">
 <meta property="og:title" content="JSON Schema for PHP - Check mode">
 
 
-<meta name="generator" content="HydePHP v2.0.2">
+<link rel="sitemap" href="https://jsonrainbow.github.io/docs/sitemap.xml" type="application/xml" title="Sitemap">
+<meta name="generator" content="HydePHP v2.0.3">
 <meta property="og:site_name" content="JSON Schema for PHP">
 
 
@@ -20,7 +22,7 @@
 <style>[x-cloak] {display: none!important}</style>
 
 
-            <link rel="stylesheet" href="../media/app.css?v=a742d624">
+            <link rel="stylesheet" href="https://jsonrainbow.github.io/docs/media/app.css?v=a742d624">
     
     
     
@@ -101,6 +103,10 @@
                             </li>
             </ul>
             </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
+            <a href="../docs/strict-mode.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
+            Strict mode
+        </a>
+    </li>                    <li class="sidebar-item -ml-4 pl-4" role="listitem">
             <a href="../docs/advanced-topics.html" class="block -ml-4 p-2 border-l-[0.325rem] border-transparent hover:bg-black/5 dark:hover:bg-black/10">
             Advanced topics
         </a>
@@ -207,10 +213,11 @@ $validator-&gt;validate(
 <td><code>Constraint::CHECK_MODE_STRICT</code></td>
 <td align="left"></td>
 <td><code>0x00000200</code></td>
-<td>Validate the schema using strict mode, respecting the $schema identifier</td>
+<td>Validate the document using the constraint set of the draft named in <code>$schema</code></td>
 </tr>
 </tbody>
 </table>
+<p>The <code>CHECK_MODE_STRICT</code> flag is covered in more detail on the <a href="strict-mode.html">Strict mode</a> page.</p>
         </section>
         <footer id="document-footer" class="flex items-center flex-wrap mt-8 prose-p:my-3 justify-between text-[90%]">
             <p class="edit-page-link">
@@ -408,7 +415,7 @@ function initHydeSearch(searchIndexUrl) {
     <div id="search-window-backdrop" title="Click to close search window" class="w-screen h-screen cursor-pointer z-40 bg-black/50 absolute top-0"></div>
 </div>            </div>
 
-    <script type="module" defer src="../media/app.js?v=9d967d9e"></script>
+    <script type="module" defer src="https://jsonrainbow.github.io/docs/media/app.js?v=9d967d9e"></script>
 
 
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js" integrity="sha256-gOkV4d9/FmMNEkjOzVlyM2eNAWSUXisT+1RbMTTIgXI=" crossorigin="anonymous"></script>
